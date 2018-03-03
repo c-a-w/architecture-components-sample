@@ -24,12 +24,12 @@ public class ItemsListViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public LiveData<List<LineItem>> getList() {
+    public List<LineItem> getList() {
         Log.d(TAG, "calling vm getList");
         return repository.getLineItems();
     }
 
-    public LiveData<LineItem> getLineItem(int id) {
+    public LineItem getLineItem(int id) {
         Log.d(TAG, "getting line item with id: " + id);
         return repository.getLineItem(id);
     }
