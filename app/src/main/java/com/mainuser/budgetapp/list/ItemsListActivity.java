@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,7 +27,7 @@ public class ItemsListActivity extends BaseActivity {
     private CustomListAdapter adapter;
 
     @Inject ViewModelFactory factory;
-    @Inject RecyclerView.LayoutManager layoutManager;
+    RecyclerView.LayoutManager layoutManager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,19 +38,10 @@ public class ItemsListActivity extends BaseActivity {
         setContentView(R.layout.activity_items_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        layoutManager = new LinearLayoutManager(this);
         adapter = new CustomListAdapter(this);
         viewModel = ViewModelProviders.of(this, factory).get(ItemsListViewModel.class);
-        viewModel.getList().observe(this, new Observer<List<LineItem>>() {
-            @Override
-            public void onChanged(@Nullable List<LineItem> lineItems) {
-                Log.d(TAG, "calling observe onChanged");
-                if (lineItems == null) {
-                    Log.d(TAG, "lineItems null in observe()");
-                    return;
-                }
-                adapter.setItemsList(lineItems);
-            }
-        });
+
 
         recyclerView = findViewById(R.id.items_list_recycler);
         recyclerView.setHasFixedSize(true);

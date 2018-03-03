@@ -48,10 +48,4 @@ public class BudgetAppModule {
     ViewModelFactory provideViewModelFactory(LineItemRepository repository) {
         return new ViewModelFactory(application, repository);
     }
-
-    @Provides
-    @Singleton
-    RecyclerView.LayoutManager provideRecyclerViewLayoutManager() {
-        return new LinearLayoutManager(application);
-    }
 }
