@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Budget App</string>
+    <string name="description">Description</string>
+    <string name="date">Date</string>
+    <string name="amount">Amount</string>
+    <string name="button_add">Add</string>
+    <string name="title_activity_line_item">LineItemActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="message_title">Welcome to Budget App</string>
+    <string name="title_activity_items_list">ItemsListActivity</string>
+    <string name="category">Category</string>
+</resources>
