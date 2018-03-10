@@ -14,7 +14,7 @@ import javax.inject.Singleton;
 // TODO: remove exportSchema later
 // TODO: remove allowMainThreadQueries later
 @Singleton
-@Database(version=1, entities = LineItem.class, exportSchema = false)
+@Database(version=2, entities = LineItem.class, exportSchema = false)
 @TypeConverters(RoomTypeConverters.class)
 public abstract class LineItemDatabase extends RoomDatabase {
     abstract public LineItemDao lineItemDao();

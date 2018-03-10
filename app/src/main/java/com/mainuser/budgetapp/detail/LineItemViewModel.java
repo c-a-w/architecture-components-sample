@@ -23,7 +23,7 @@ public class LineItemViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    LineItem getLineItemAt(int id) {
+    LiveData<LineItem> getLineItemAt(int id) {
         return repository.getLineItem(id);
     }
 

@@ -20,11 +20,11 @@ public class LineItemRepository {
         this.lineItemDao = lineItemDao;
     }
 
-    public List<LineItem> getLineItems() {
+    public LiveData<List<LineItem>> getLineItems() {
         return lineItemDao.findAll();
     }
 
-    public LineItem getLineItem(int id) {
+    public LiveData<LineItem> getLineItem(int id) {
         return lineItemDao.findById(id);
     }
 

@@ -19,8 +19,8 @@ public interface LineItemDao {
     void delete(LineItem lineItem);
 
     @Query("SELECT * FROM line_items")
-    List<LineItem> findAll();
+    LiveData<List<LineItem>> findAll();
 
     @Query("SELECT * FROM line_items WHERE id = :id")
-    LineItem findById(int id);
+    LiveData<LineItem> findById(int id);
 }
