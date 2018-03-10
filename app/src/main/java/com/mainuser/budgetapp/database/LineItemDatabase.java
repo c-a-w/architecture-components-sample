@@ -23,7 +23,8 @@ public abstract class LineItemDatabase extends RoomDatabase {
     public static LineItemDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(
-                    context, LineItemDatabase.class, "main-database").build();
+                    context, LineItemDatabase.class, "main-database")
+                    .addMigrations(FROM_1_2).build();
         }
         return INSTANCE;
     }
@@ -31,7 +32,7 @@ public abstract class LineItemDatabase extends RoomDatabase {
         INSTANCE = null;
     }
 
-    private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    private static final Migration FROM_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
         }
