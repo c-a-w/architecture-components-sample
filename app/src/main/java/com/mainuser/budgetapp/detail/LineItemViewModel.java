@@ -9,8 +9,6 @@ import com.mainuser.budgetapp.database.LineItem;
 import com.mainuser.budgetapp.database.LineItemRepository;
 import com.mainuser.budgetapp.list.ItemsListViewModel;
 
-
-
 public class LineItemViewModel extends ViewModel {
     private static final String TAG = ItemsListViewModel.class.getSimpleName();
 
@@ -27,5 +25,8 @@ public class LineItemViewModel extends ViewModel {
         return repository.getLineItem(id);
     }
 
+    void updateLineItem(LineItem lineItem) {
+        repository.updateLineItem(lineItem);
+    }
 
 }

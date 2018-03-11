@@ -40,7 +40,7 @@ public class LineItemRepositoryTest {
 
     @Test
     public void setLineItem() throws Exception {
-        repo.setLineItem(lineItem);
+        repo.updateLineItem(lineItem);
         verify(dao).insert(lineItem);
     }
 

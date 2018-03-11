@@ -28,7 +28,7 @@ public class LineItemRepository {
         return lineItemDao.findById(id);
     }
 
-    public void setLineItem(LineItem lineItem) {
+    public void updateLineItem(LineItem lineItem) {
         lineItemDao.insert(lineItem);
     }
 
