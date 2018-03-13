@@ -17,4 +17,16 @@ import javax.inject.Singleton;
 @TypeConverters(RoomTypeConverters.class)
 public abstract class LineItemDatabase extends RoomDatabase {
     abstract public LineItemDao lineItemDao();
+    private static LineItemDatabase INSTANCE;
+
+    public static LineItemDatabase getDatabase(Context context) {
+        if (INSTANCE == null) {
+            INSTANCE = Room.databaseBuilder(
+                    context, LineItemDatabase.class, "main-database").build();
+        }
+        return INSTANCE;
+    }
+    public static void destroyDatabaseInstance() {
+        INSTANCE = null;
+    }
 }
