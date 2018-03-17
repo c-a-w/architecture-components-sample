@@ -21,25 +21,25 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.ViewHolder> {
-    private final String TAG = CustomListAdapter.class.getSimpleName();
+public class LineItemListAdapter extends RecyclerView.Adapter<LineItemListAdapter.ViewHolder> {
+    private final String TAG = LineItemListAdapter.class.getSimpleName();
 
     private Context context;
     private List<LineItem> lineItemList;
 
-    CustomListAdapter(Context context) {
+    LineItemListAdapter(Context context) {
         this.context = context;
     }
 
     @Override
-    public CustomListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LineItemListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.list_line_item, parent, false);
-        return new CustomListAdapter.ViewHolder(v);
+        return new LineItemListAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(CustomListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(LineItemListAdapter.ViewHolder holder, int position) {
         Log.d(TAG, "calling onBindViewHolder");
         LineItem currentItem = lineItemList.get(position);
 
