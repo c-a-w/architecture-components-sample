@@ -37,7 +37,7 @@ public class BudgetAppModule {
     @Provides
     @Singleton
     LineItemDatabase provideLineItemDatabase() {
-        return Room.inMemoryDatabaseBuilder(application, LineItemDatabase.class)
+        return Room.databaseBuilder(application, LineItemDatabase.class, "line-item-db")
                 .allowMainThreadQueries().build();
     }
 
