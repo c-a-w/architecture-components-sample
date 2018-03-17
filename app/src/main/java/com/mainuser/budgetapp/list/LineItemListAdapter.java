@@ -33,6 +33,7 @@ public class LineItemListAdapter extends RecyclerView.Adapter<LineItemListAdapte
 
     @Override
     public LineItemListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d(TAG, "calling onCreateViewHolder");
         View v = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.list_line_item, parent, false);
         return new LineItemListAdapter.ViewHolder(v);
@@ -51,11 +52,12 @@ public class LineItemListAdapter extends RecyclerView.Adapter<LineItemListAdapte
 
     @Override
     public int getItemCount() {
+        Log.d(TAG, "calling getItemCount");
         return (lineItemList == null ? 0 : lineItemList.size());
     }
 
-    void setItemsList(LiveData<List<LineItem>> lineItemList) {
-        this.lineItemList = lineItemList.getValue();
+    void setItemsList(List<LineItem> lineItemList) {
+        this.lineItemList = lineItemList;
     }
 
     private String formatDate(long dateVal) {

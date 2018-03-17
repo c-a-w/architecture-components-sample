@@ -10,10 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.mainuser.budgetapp.BudgetApp;
+import com.mainuser.budgetapp.R;
 import com.mainuser.budgetapp.ViewModelFactory;
 import com.mainuser.budgetapp.database.LineItem;
 import com.mainuser.budgetapp.util.BaseActivity;
-import com.mainuser.budgetapp.R;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class ItemsListActivity extends BaseActivity {
 
     private ItemsListViewModel viewModel;
     private RecyclerView recyclerView;
-    private CustomListAdapter adapter;
+    private LineItemListAdapter adapter;
 
     @Inject ViewModelFactory factory;
     RecyclerView.LayoutManager layoutManager;
@@ -38,14 +38,30 @@ public class ItemsListActivity extends BaseActivity {
         setContentView(R.layout.activity_items_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        layoutManager = new LinearLayoutManager(this);
-        adapter = new CustomListAdapter(this);
         viewModel = ViewModelProviders.of(this, factory).get(ItemsListViewModel.class);
-
 
         recyclerView = findViewById(R.id.items_list_recycler);
         recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new LineItemListAdapter(this);
         recyclerView.setAdapter(adapter);
-     }
+
+        viewModel.getList().observe(this, new Observer<List<LineItem>>() {
+            @Override
+            public void onChanged(@Nullable List<LineItem> lineItems) {
+                if (lineItems != null) {
+                    Log.d(TAG, lineItems.size() + " lineItems in the db");
+                    adapter.setItemsList(lineItems);
+                } else {
+                    Log.d(TAG, "lineItems is null");
+                }
+                for (LineItem li : lineItems) {
+                    Log.d(TAG, li.getDescription() + " " + li.getAmount());
+                }
+            }
+        });
+    }
 }

@@ -12,10 +12,6 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.quality.Strictness;
 
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
 public class LineItemDatabaseTest {
 
     LineItemDatabase db;
@@ -32,12 +28,6 @@ public class LineItemDatabaseTest {
                 InstrumentationRegistry.getContext(), LineItemDatabase.class).build();
         dao = db.lineItemDao();
 
-    }
-
-    @Test
-    public void getDatabase() throws Exception {
-        LineItemDatabase dbToTest = LineItemDatabase.getDatabase(context);
-        assertThat(dbToTest, is(instanceOf(LineItemDatabase.class)));
     }
 
     @Test

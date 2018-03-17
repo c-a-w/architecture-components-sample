@@ -2,8 +2,6 @@ package com.mainuser.budgetapp.di;
 
 import android.app.Application;
 import android.arch.persistence.room.Room;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.mainuser.budgetapp.ViewModelFactory;
 import com.mainuser.budgetapp.database.LineItemDao;
@@ -26,21 +24,21 @@ public class BudgetAppModule {
 
     @Provides
     @Singleton
-    LineItemDatabase provideMainDatabase() {
-        return Room.databaseBuilder(application, LineItemDatabase.class, "main-database")
-                .allowMainThreadQueries().build();
-    }
-
-    @Provides
-    @Singleton
     LineItemRepository provideLineItemRepository(LineItemDao lineItemDao) {
         return new LineItemRepository(lineItemDao);
     }
 
     @Provides
     @Singleton
-    LineItemDao provideLineItemDao(LineItemDatabase database) {
-        return  database.lineItemDao();
+    LineItemDao provideLineItemDao(LineItemDatabase db) {
+        return db.lineItemDao();
+    }
+
+    @Provides
+    @Singleton
+    LineItemDatabase provideLineItemDatabase() {
+        return Room.inMemoryDatabaseBuilder(application, LineItemDatabase.class)
+                .allowMainThreadQueries().build();
     }
 
     @Provides

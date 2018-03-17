@@ -88,18 +88,6 @@ public class LineItemDaoTest {
     }
 
     @Test
-    public void update() throws Exception {
-        assertThat(getValue(lineItemDao.findAll()), hasSize(1));
-
-        LineItem updatedLineItem = getValue(lineItemDao.findById(1));
-        updatedLineItem.setAmount(50.50);
-        lineItemDao.insert(updatedLineItem);
-
-        assertThat(getValue(lineItemDao.findAll()), hasSize(1));
-        assertThat(getValue(lineItemDao.findById(1)).getAmount(), is(50.50));
-    }
-
-    @Test
     public void delete() throws Exception {
         assertThat(getValue(lineItemDao.findAll()), hasSize(1));
 
