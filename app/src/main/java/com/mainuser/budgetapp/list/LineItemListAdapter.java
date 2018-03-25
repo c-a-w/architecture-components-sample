@@ -1,6 +1,5 @@
 package com.mainuser.budgetapp.list;
 
-import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 import com.mainuser.budgetapp.R;
 import com.mainuser.budgetapp.database.LineItem;
 import com.mainuser.budgetapp.detail.LineItemActivity;
-import com.mainuser.budgetapp.util.IntentActions;
+import com.mainuser.budgetapp.util.IntentStrings;
 import com.mainuser.budgetapp.util.StringFormats;
 
 import java.util.Date;
@@ -33,7 +32,6 @@ public class LineItemListAdapter extends RecyclerView.Adapter<LineItemListAdapte
 
     @Override
     public LineItemListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d(TAG, "calling onCreateViewHolder");
         View v = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.list_line_item, parent, false);
         return new LineItemListAdapter.ViewHolder(v);
@@ -41,7 +39,6 @@ public class LineItemListAdapter extends RecyclerView.Adapter<LineItemListAdapte
 
     @Override
     public void onBindViewHolder(LineItemListAdapter.ViewHolder holder, int position) {
-        Log.d(TAG, "calling onBindViewHolder");
         LineItem currentItem = lineItemList.get(position);
 
         holder.dateView.setText(formatDate(currentItem.getDate()));
@@ -52,7 +49,6 @@ public class LineItemListAdapter extends RecyclerView.Adapter<LineItemListAdapte
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "calling getItemCount");
         return (lineItemList == null ? 0 : lineItemList.size());
     }
 
@@ -85,8 +81,12 @@ public class LineItemListAdapter extends RecyclerView.Adapter<LineItemListAdapte
                 @Override
                 public void onClick(View v) {
                     int position = ViewHolder.this.getAdapterPosition();
+                    if (position == RecyclerView.NO_POSITION) {
+                        Log.d(TAG, "Could not find position.");
+                        return;
+                    }
                     Intent intent = new Intent(context, LineItemActivity.class);
-                    intent.putExtra(IntentActions.LINE_ITEM_ID, position);
+                    intent.putExtra(IntentStrings.LINE_ITEM_ID, position);
                     context.startActivity(intent);
                 }
             });
