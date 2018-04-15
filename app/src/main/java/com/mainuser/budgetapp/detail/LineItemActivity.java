@@ -59,7 +59,7 @@ public class LineItemActivity extends BaseActivity {
         if (intent != null && intent.hasExtra(IntentStrings.LINE_ITEM_ID)) {
             lineItemId = intent.getIntExtra(IntentStrings.LINE_ITEM_ID, -1);
         }
-        lineItemViewModel.getLineItemAt(lineItemId).observe(this, new Observer<LineItem>() {
+        lineItemViewModel.getLineItemAt(lineItemId + 1).observe(this, new Observer<LineItem>() {
             @Override
             public void onChanged(@Nullable LineItem lineItem) {
                 if (null != lineItem) {
