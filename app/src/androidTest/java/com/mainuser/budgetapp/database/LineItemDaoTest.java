@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -85,6 +86,20 @@ public class LineItemDaoTest {
         );
         lineItemDao.insert(lineItem2);
         assertThat(getValue(lineItemDao.findAll()), hasSize(2));
+    }
+
+    @Test
+    public void insertCreatesLineItem() throws Exception {
+        int listSize = lineItemDao.findAll().getValue().size();
+        assertThat(listSize, is(greaterThan(0)));
+        LineItem lineItem = new LineItem(
+                convertCalendar(new Date()),
+                "Store",
+                55.00,
+                "S"
+        );
+        lineItemDao.insert(lineItem);
+        assertThat(lineItemDao.findAll().getValue().size(), is(greaterThan(listSize)));
     }
 
     @Test
