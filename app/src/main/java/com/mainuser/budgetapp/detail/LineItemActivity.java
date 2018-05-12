@@ -1,6 +1,7 @@
 package com.mainuser.budgetapp.detail;
 
 import android.app.DialogFragment;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -70,12 +71,13 @@ public class LineItemActivity extends BaseActivity {
     }
 
     public void updateLineItem(View view) {
-        lineItemViewModel.updateLineItem(new LineItem(
+        lineItemViewModel.updateLineItem(
                 getDateValue().getTime(),
                 descView.getText().toString(),
                 Double.parseDouble(amountView.getText().toString()),
                 categoryView.getText().toString()
-        ));
+        );
+        toList();
     }
 
     public void showDatePicker(View v) {

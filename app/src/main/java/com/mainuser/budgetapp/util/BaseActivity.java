@@ -20,6 +20,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         return true;
     }
 
+    public void toAddLineItem() {
+        Intent intent = new Intent(this, LineItemActivity.class);
+        startActivity(intent);
+    }
+
+    public void toHome() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void toList() {
+        Intent intent = new Intent(this, ItemsListActivity.class);
+        startActivity(intent);
+    }
+
     public void toAddLineItem(MenuItem menuItem) {
         Intent intent = new Intent(this, LineItemActivity.class);
         startActivity(intent);
