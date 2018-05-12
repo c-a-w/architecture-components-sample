@@ -64,4 +64,11 @@ public class LineItem {
         this.category = category;
     }
 
+    @Override
+    public String toString() {
+        return "LineItem, id: " + id
+                + ", date: " + date
+                + ", desc: " + description
+                + ", category: " + category;
+    }
 }
