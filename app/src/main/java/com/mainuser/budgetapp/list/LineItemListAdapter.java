@@ -52,6 +52,10 @@ public class LineItemListAdapter extends RecyclerView.Adapter<LineItemListAdapte
         return (lineItemList == null ? 0 : lineItemList.size());
     }
 
+    public LineItem get(int position) {
+        return lineItemList.get(position);
+    }
+
     void setItemsList(List<LineItem> lineItemList) {
         this.lineItemList = lineItemList;
     }
