@@ -29,18 +29,14 @@ public class LineItemViewModel extends ViewModel {
     }
 
     void updateLineItem(long newDate, String newDescription, double newAmount, String newCategory) {
-        if (null == lineItem) {
-            Log.d(TAG, "lineItem not set");
-            return;
-        }
         LineItem newItem = lineItem.getValue();
-        if (null == newItem) {
-            Log.d(TAG, "No value for " + lineItem);
-            return;
+        if (newItem == null) {
+            newItem = new LineItem(newDate, newDescription, newAmount, newCategory);
+        } else {
+            newItem.setDate(newDate);
+            newItem.setDescription(newDescription);
+            newItem.setAmount(newAmount);
         }
-        newItem.setDate(newDate);
-        newItem.setDescription(newDescription);
-        newItem.setAmount(newAmount);
         newItem.setCategory(newCategory);
         repository.updateLineItem(newItem);
     }
