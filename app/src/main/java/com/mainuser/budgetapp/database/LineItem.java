@@ -69,6 +69,7 @@ public class LineItem {
         return "LineItem, id: " + id
                 + ", date: " + date
                 + ", desc: " + description
+                + ", amt: " + amount
                 + ", category: " + category;
     }
 }
