@@ -25,13 +25,16 @@ public class ItemsListViewModel extends ViewModel {
     }
 
     public LiveData<List<LineItem>> getList() {
-        Log.d(TAG, "calling vm getList");
         return repository.getLineItems();
     }
 
     public LiveData<LineItem> getLineItem(int id) {
         Log.d(TAG, "getting line item with id: " + id);
         return repository.getLineItem(id);
+    }
+
+    public void deleteLineItem(LineItem lineItem) {
+        repository.deleteLineItem(lineItem);
     }
 
 
